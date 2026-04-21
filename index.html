@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--
+  index.html
+  Home page for the Aircraft Catalog website.
+  NOTE: if you change the navbar or footer, remember to update
+  it on the other pages too (we don't have templates).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroCatalog - Home</title>
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet" />
+
+  <!-- our own styles on top of Bootstrap -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER / NAVBAR
+       Has 4 main items: Home, Catalog (with submenu), FAQs, About.
+       The Catalog dropdown lists all 10 aircraft in our catalog.
+       ============================================================ -->
+  <header>
+    <nav class="navbar navbar-expand-lg site-navbar">
+      <div class="container">
+
+        <!-- brand / logo -->
+        <a class="navbar-brand" href="index.html">
+          <span class="brand-icon">&#9992;</span>AeroCatalog
+        </a>
+
+        <!-- hamburger button for small screens -->
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+                aria-controls="mainNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- the actual menu -->
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+
+            <!-- Catalog dropdown = submenu with all aircraft -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#"
+                 role="button"
+                 data-bs-toggle="dropdown"
+                 aria-expanded="false">
+                Catalog
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="aircraft/skyhawk-100.html">Skyhawk 100</a></li>
+                <li><a class="dropdown-item" href="aircraft/skyhawk-200.html">Skyhawk 200</a></li>
+                <li><a class="dropdown-item" href="aircraft/condor-300.html">Condor 300</a></li>
+                <li><a class="dropdown-item" href="aircraft/condor-400.html">Condor 400</a></li>
+                <li><a class="dropdown-item" href="aircraft/falcon-500.html">Falcon 500</a></li>
+                <li><a class="dropdown-item" href="aircraft/falcon-600.html">Falcon 600</a></li>
+                <li><a class="dropdown-item" href="aircraft/albatross-700.html">Albatross 700</a></li>
+                <li><a class="dropdown-item" href="aircraft/albatross-800.html">Albatross 800</a></li>
+                <li><a class="dropdown-item" href="aircraft/phoenix-900.html">Phoenix 900</a></li>
+                <li><a class="dropdown-item" href="aircraft/phoenix-1000.html">Phoenix 1000</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="faqs.html">FAQs</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main class="container">
+
+    <!-- Hero carousel.
+         4 slides, each slide is wrapped in an <a> so clicking
+         anywhere on a slide takes you to that aircraft's detail
+         page. -->
+    <div id="heroCarousel" class="carousel slide hero-carousel"
+         data-bs-ride="carousel">
+
+      <!-- little dots at the bottom -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <!-- slide 1 -->
+        <div class="carousel-item active">
+          <a href="aircraft/skyhawk-200.html">
+            <!-- Replace <yourstorageaccount> with your Azure storage account name.
+                 Upload the image as skyhawk-200.jpg into the 'aircraft' container. -->
+            <img src="https://<yourstorageaccount>.blob.core.windows.net/aircraft/skyhawk-200.jpg"
+                 class="d-block img-fluid" alt="Skyhawk 200" />
+            <div class="carousel-caption">
+              <h5>Skyhawk 200</h5>
+              <p>Efficient short-haul flying for busy regional routes.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- slide 2 -->
+        <div class="carousel-item">
+          <a href="aircraft/condor-400.html">
+            <!-- Replace <yourstorageaccount> with your Azure storage account name.
+                 Upload the image as condor-400.jpg into the 'aircraft' container. -->
+            <img src="https://<yourstorageaccount>.blob.core.windows.net/aircraft/condor-400.jpg"
+                 class="d-block img-fluid" alt="Condor 400" />
+            <div class="carousel-caption">
+              <h5>Condor 400</h5>
+              <p>Our mid-range workhorse, balanced for range and payload.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- slide 3 -->
+        <div class="carousel-item">
+          <a href="aircraft/albatross-800.html">
+            <!-- Replace <yourstorageaccount> with your Azure storage account name.
+                 Upload the image as albatross-800.jpg into the 'aircraft' container. -->
+            <img src="https://<yourstorageaccount>.blob.core.windows.net/aircraft/albatross-800.jpg"
+                 class="d-block img-fluid" alt="Albatross 800" />
+            <div class="carousel-caption">
+              <h5>Albatross 800</h5>
+              <p>Long-haul wide-body built for intercontinental comfort.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- slide 4 -->
+        <div class="carousel-item">
+          <a href="aircraft/phoenix-1000.html">
+            <!-- Replace <yourstorageaccount> with your Azure storage account name.
+                 Upload the image as phoenix-1000.jpg into the 'aircraft' container. -->
+            <img src="https://<yourstorageaccount>.blob.core.windows.net/aircraft/phoenix-1000.jpg"
+                 class="d-block img-fluid" alt="Phoenix 1000" />
+            <div class="carousel-caption">
+              <h5>Phoenix 1000</h5>
+              <p>Flagship freighter / VIP platform with unmatched volume.</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- prev / next controls -->
+      <button class="carousel-control-prev" type="button"
+              data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button"
+              data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- /hero carousel -->
+
+
+    <!-- ============================================================
+         Catalog table - 10 sample aircraft records
+         ============================================================ -->
+    <section>
+      <h2 class="mb-3">Aircraft Catalog</h2>
+      <p class="text-muted">
+        Browse our full family of aircraft. Click "More info" for the
+        detailed spec sheet of each model.
+      </p>
+
+      <!-- table-responsive wraps the table so it scrolls sideways
+           on small screens instead of breaking the layout -->
+      <div class="table-responsive catalog-table">
+        <table class="table table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Product #</th>
+              <th>Name</th>
+              <th>Model</th>
+              <th>Typical Seating</th>
+              <th>Range (km)</th>
+              <th class="text-end">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SH-100</td>
+              <td>Skyhawk 100</td>
+              <td>Short-haul narrow-body</td>
+              <td>120</td>
+              <td>3,500</td>
+              <td class="text-end"><a href="aircraft/skyhawk-100.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>SH-200</td>
+              <td>Skyhawk 200</td>
+              <td>Short-haul narrow-body</td>
+              <td>150</td>
+              <td>4,100</td>
+              <td class="text-end"><a href="aircraft/skyhawk-200.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>CD-300</td>
+              <td>Condor 300</td>
+              <td>Mid-range narrow-body</td>
+              <td>180</td>
+              <td>5,800</td>
+              <td class="text-end"><a href="aircraft/condor-300.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>CD-400</td>
+              <td>Condor 400</td>
+              <td>Mid-range narrow-body</td>
+              <td>210</td>
+              <td>6,500</td>
+              <td class="text-end"><a href="aircraft/condor-400.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>FL-500</td>
+              <td>Falcon 500</td>
+              <td>Regional jet</td>
+              <td>80</td>
+              <td>2,800</td>
+              <td class="text-end"><a href="aircraft/falcon-500.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>FL-600</td>
+              <td>Falcon 600</td>
+              <td>Regional jet</td>
+              <td>95</td>
+              <td>3,200</td>
+              <td class="text-end"><a href="aircraft/falcon-600.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>AL-700</td>
+              <td>Albatross 700</td>
+              <td>Long-haul wide-body</td>
+              <td>280</td>
+              <td>11,500</td>
+              <td class="text-end"><a href="aircraft/albatross-700.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>AL-800</td>
+              <td>Albatross 800</td>
+              <td>Long-haul wide-body</td>
+              <td>320</td>
+              <td>13,200</td>
+              <td class="text-end"><a href="aircraft/albatross-800.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>PH-900</td>
+              <td>Phoenix 900</td>
+              <td>Freighter / VIP</td>
+              <td>40</td>
+              <td>9,800</td>
+              <td class="text-end"><a href="aircraft/phoenix-900.html">More info &raquo;</a></td>
+            </tr>
+            <tr>
+              <td>PH-1000</td>
+              <td>Phoenix 1000</td>
+              <td>Freighter / VIP</td>
+              <td>55</td>
+              <td>12,000</td>
+              <td class="text-end"><a href="aircraft/phoenix-1000.html">More info &raquo;</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /catalog table -->
+
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       Simple copyright line, nothing fancy.
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2026 AeroCatalog &mdash; Student Project
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap bundle (needed for carousel + dropdown to work) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
