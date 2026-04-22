@@ -1,213 +1,110 @@
-/* ============================================================
-   styles.css
-   Custom styles for the Aircraft Catalog website.
-   Bootstrap 5 gives us the grid + components, this sheet does
-   all the colour / branding work on top of it.
-   ============================================================ */
+/* styles.css
+   custom styles on top of bootstrap 5 */
 
-
-/* ----- our little colour palette -----
-   I pulled these together so the whole site can reuse them
-   through CSS variables. Makes it easy to swap later. */
-:root {
-  --sky-deep:    #0a2540;   /* dark navy - used for headings */
-  --sky-mid:     #2d6cdf;   /* main brand blue */
-  --sky-light:   #48cae4;   /* lighter accent blue */
-  --coral:       #ff6b35;   /* warm accent for call-outs */
-  --mint:        #3ac569;   /* used for regional category */
-  --grape:       #7c3aed;   /* used for long-haul category */
-  --sand:        #f4a261;   /* used for freighter category */
-  --teal:        #0ea5a5;   /* used for mid-range category */
-  --paper:       #f5f7fb;   /* page background */
-  --ink:         #0f172a;   /* body text */
-  --muted:       #64748b;   /* secondary text */
-  --card:        #ffffff;
-  --line:        #e2e8f0;
-}
-
-
-/* -------- base page --------
-   soft blue-ish background so the white cards pop a bit */
 body {
-  background-color: var(--paper);
-  color: var(--ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  background: #f4f6f8;
+  color: #222;
+  font-family: system-ui, Arial, sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
-  color: var(--sky-deep);
+h1, h2, h3, h4 {
+  color: #0d2b4d;
   font-weight: 700;
-  letter-spacing: -0.01em;
 }
 
-/* breathing room between navbar and page content */
 main {
   padding-top: 2rem;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 }
 
-/* links use our brand blue and turn coral on hover */
 a {
-  color: var(--sky-mid);
+  color: #2563eb;
   text-decoration: none;
-  transition: color 0.15s ease;
 }
-a:hover {
-  color: var(--coral);
-}
+a:hover { color: #1d4ed8; }
 
 
-/* ============================================================
-   NAVBAR
-   White bar with a thin coloured stripe underneath, so it still
-   feels clean but has a pop of colour.
-   ============================================================ */
+/* navbar */
 .site-navbar {
-  background-color: var(--card);
-  border-bottom: 1px solid var(--line);
-  /* the coloured stripe is drawn as a thin gradient line */
-  box-shadow: inset 0 -3px 0 0 transparent;
-  position: relative;
-}
-
-/* the coloured gradient stripe under the navbar */
-.site-navbar::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 3px;
-  background: linear-gradient(90deg,
-      var(--sky-mid) 0%,
-      var(--sky-light) 35%,
-      var(--coral) 100%);
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .site-navbar .navbar-brand {
   font-weight: 700;
-  color: var(--sky-deep);
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
+  color: #0d2b4d;
 }
 
-.site-navbar .brand-icon {
-  color: var(--coral);
-  margin-right: 0.4rem;
-  font-size: 1.1rem;
+.brand-icon {
+  color: #2563eb;
+  margin-right: 4px;
 }
 
-/* nav links - subtle pill hover */
 .site-navbar .nav-link {
-  color: var(--ink);
+  color: #222;
   font-weight: 500;
-  padding: 0.45rem 0.9rem !important;
-  border-radius: 999px;
-  margin: 0 0.15rem;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-.site-navbar .nav-link:hover {
-  background-color: rgba(45, 108, 223, 0.08);
-  color: var(--sky-mid);
 }
 .site-navbar .nav-link.active {
-  background-color: var(--sky-mid);
-  color: #fff !important;
+  color: #2563eb;
 }
 
-/* dropdown menu tweaks */
-.site-navbar .dropdown-menu {
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-  padding: 0.5rem;
-}
-.site-navbar .dropdown-item {
-  border-radius: 0.5rem;
-  padding: 0.45rem 0.75rem;
-}
-.site-navbar .dropdown-item:hover {
-  background-color: rgba(45, 108, 223, 0.08);
-  color: var(--sky-mid);
+.dropdown-menu {
+  border: 1px solid #e5e7eb;
 }
 
 
-/* ============================================================
-   TOP YELLOW ANNOUNCEMENT BAR (home page only)
-   Sits above everything, even the navbar. Looks like the
-   notice strip you see on a lot of airline sites.
-   ============================================================ */
+/* yellow strip at the top of the home page */
 .top-banner {
-  background-color: #ffd24a;
-  color: var(--ink);
+  background: #ffd24a;
+  padding: 8px 0;
   font-size: 0.92rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-.top-banner .banner-msg {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
 }
 .top-banner .banner-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.4rem;
-  height: 1.4rem;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background-color: rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.2);
   color: #fff;
+  text-align: center;
   font-style: italic;
-  font-weight: 700;
-  font-size: 0.85rem;
-  font-family: "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 20px;
+  margin-right: 6px;
 }
 .top-banner .banner-link {
-  color: var(--ink);
-  font-weight: 600;
+  color: #222;
   text-decoration: underline;
-}
-.top-banner .banner-link:hover {
-  color: var(--sky-deep);
+  font-weight: 600;
 }
 
 
-/* ============================================================
-   HOME HERO REGION
-   Big background image, transparent navbar layered on top, and
-   a headline with a CTA button on the left side.
-   ============================================================ */
+/* home hero - big background image with text on top */
 .home-hero {
   position: relative;
-  min-height: 78vh;
-  background: linear-gradient(135deg, var(--sky-deep) 0%, var(--sky-mid) 60%, var(--sky-light) 100%);
+  min-height: 75vh;
+  background: #0d2b4d;
   overflow: hidden;
   color: #fff;
 }
 
 .home-hero .hero-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
 }
 
-/* darken the photo a bit so the white text stays legible */
+/* dark overlay so the white text is readable */
 .home-hero::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,
-      rgba(10, 37, 64, 0.55) 0%,
-      rgba(10, 37, 64, 0.20) 60%,
-      rgba(10, 37, 64, 0.00) 100%);
-  z-index: 1;
-  pointer-events: none;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10, 30, 60, 0.4);
 }
 
 .home-hero header,
@@ -217,483 +114,276 @@ a:hover {
 }
 
 .home-hero .hero-text-wrap {
-  padding: 7rem 0 9rem;
+  padding: 90px 0 130px;
 }
 
 .hero-title {
   color: #fff;
-  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-size: 2.8rem;
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin-bottom: 2rem;
-  max-width: 620px;
-  text-shadow: 0 2px 18px rgba(0,0,0,0.25);
+  margin-bottom: 24px;
+  max-width: 600px;
 }
 
 .hero-btn {
   display: inline-block;
-  background-color: #fff;
-  color: var(--sky-deep) !important;
-  padding: 0.85rem 2rem;
+  background: #fff;
+  color: #0d2b4d !important;
+  padding: 12px 28px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .hero-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
-  color: var(--sky-mid) !important;
+  background: #f1f5f9;
 }
 
 
-/* --- transparent navbar variant used inside .home-hero --- */
+/* navbar gets transparent on the home page only */
 .home-navbar {
-  background-color: transparent !important;
+  background: transparent !important;
   border-bottom: none;
 }
-.home-navbar::after { display: none; }   /* hide the gradient stripe on the home hero */
-
 .home-navbar .navbar-brand,
-.home-navbar .nav-link {
-  color: #fff;
-}
-.home-navbar .navbar-brand .brand-icon { color: #fff; }
-
-.home-navbar .nav-link {
-  color: rgba(255,255,255,0.92);
-}
-.home-navbar .nav-link:hover {
-  background-color: rgba(255,255,255,0.12);
+.home-navbar .nav-link,
+.home-navbar .brand-icon {
   color: #fff;
 }
 .home-navbar .nav-link.active {
-  background-color: rgba(255,255,255,0.18);
-  color: #fff !important;
+  color: #fff;
+  text-decoration: underline;
 }
-
 .home-navbar .navbar-toggler {
-  border-color: rgba(255,255,255,0.5);
+  border-color: #fff;
 }
 .home-navbar .navbar-toggler-icon {
-  filter: invert(1) brightness(2);
+  filter: invert(1);
 }
 
-/* small "Sign in" pill on the far right of the home navbar */
 .sign-in-pill {
-  border: 1px solid rgba(255,255,255,0.7);
+  border: 1px solid #fff;
   border-radius: 999px;
-  padding: 0.4rem 1rem !important;
-}
-.home-navbar .sign-in-pill:hover {
-  background-color: #fff;
-  color: var(--sky-deep) !important;
+  padding: 6px 16px !important;
 }
 
 
-/* ============================================================
-   FLOATING CARD on the home page - the white box that holds the
-   carousel and overlaps the bottom of the hero image. Mirrors the
-   "booking widget" you see on a lot of airline home pages.
-   ============================================================ */
+/* white card holding the carousel - sits on top of the hero */
 .home-main {
-  /* pull the first child up so it overlaps the hero image */
-  margin-top: -6rem;
+  margin-top: -90px;
   position: relative;
   z-index: 3;
 }
 
 .floating-card {
-  background-color: var(--card);
-  border-radius: 1rem;
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   overflow: hidden;
-  margin-bottom: 3rem;
-}
-
-/* the carousel sits inside the floating card so trim its own
-   margin / shadow to avoid double-bordering */
-.floating-card .hero-carousel {
-  margin-bottom: 0;
-  border-radius: 0;
-  box-shadow: none;
+  margin-bottom: 30px;
 }
 
 
-/* ============================================================
-   HERO BANNER (used as a simple page title banner on
-   FAQs / About / detail pages)
-   ============================================================ */
-.page-hero {
-  background: linear-gradient(135deg,
-      var(--sky-deep) 0%,
-      var(--sky-mid) 60%,
-      var(--sky-light) 100%);
-  color: #fff;
-  padding: 3rem 0 3.25rem;
-  margin-bottom: 2rem;
-  border-radius: 0 0 1.5rem 1.5rem;
-  /* a little textured pattern via radial gradients - looks like
-     a faint star field / contrails */
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.10) 0, transparent 45%),
-    linear-gradient(135deg, var(--sky-deep) 0%, var(--sky-mid) 60%, var(--sky-light) 100%);
-}
-
-.page-hero h1 {
-  color: #fff;
-  margin-bottom: 0.5rem;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-}
-
-.page-hero p {
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 0;
-  max-width: 680px;
-}
-
-
-/* ============================================================
-   CAROUSEL
-   ============================================================ */
-.hero-carousel {
-  border-radius: 1rem;
-  overflow: hidden;
-  margin-bottom: 2.5rem;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-}
-
-/* keep each slide the same height so the layout doesn't jump */
+/* carousel */
 .hero-carousel .carousel-item img {
   width: 100%;
-  height: 62vh;
+  height: 480px;
   object-fit: cover;
-  /* while the Azure URL isn't set yet, show a coloured gradient
-     placeholder behind the broken image so the slide still looks
-     intentional. */
-  background: linear-gradient(135deg, var(--sky-mid), var(--grape));
+  background: #0d2b4d;
 }
 
-/* caption sits bottom-left on top of a soft dark gradient */
 .hero-carousel .carousel-caption {
-  background: linear-gradient(to top,
-      rgba(10, 37, 64, 0.75) 0%,
-      rgba(10, 37, 64, 0.30) 60%,
-      transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 1.5rem 2rem 2.25rem;
+  padding: 20px 30px;
   text-align: left;
 }
 .hero-carousel .carousel-caption h5 {
   color: #fff;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 0.35rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 .hero-carousel .carousel-caption p {
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 0;
-  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
-/* little "Explore →" tag on each slide */
 .slide-cta {
   display: inline-block;
-  margin-top: 0.75rem;
-  padding: 0.35rem 0.9rem;
-  background-color: var(--coral);
+  background: #ff6b35;
   color: #fff !important;
+  padding: 4px 12px;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.hero-carousel .carousel-indicators [data-bs-target] {
-  background-color: rgba(255,255,255,0.65);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: none;
-}
-.hero-carousel .carousel-indicators .active {
-  background-color: var(--coral);
 }
 
 
-/* ============================================================
-   CATALOG TABLE (home page)
-   ============================================================ */
+/* catalog table */
 .catalog-section {
-  background-color: var(--card);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
-  border: 1px solid var(--line);
-}
-
-.catalog-table {
-  margin-bottom: 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
 }
 
 .catalog-table thead th {
-  background-color: transparent;
-  border-bottom: 2px solid var(--line);
-  color: var(--muted);
-  font-weight: 600;
+  color: #6b7280;
   font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.75rem 0.9rem;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #e5e7eb;
 }
-
 .catalog-table tbody td {
-  padding: 1rem 0.9rem;
+  padding: 14px 12px;
   vertical-align: middle;
-  border-color: var(--line);
-}
-
-.catalog-table tbody tr {
-  transition: background-color 0.12s ease;
 }
 .catalog-table tbody tr:hover {
-  background-color: rgba(45, 108, 223, 0.04);
+  background: #f9fafb;
 }
 
-/* the product number (SH-100 etc) gets a monospace / tag look */
 .product-code {
-  display: inline-block;
-  background-color: rgba(45, 108, 223, 0.08);
-  color: var(--sky-mid);
-  padding: 0.25rem 0.6rem;
-  border-radius: 0.4rem;
-  font-family: "SF Mono", "Monaco", Menlo, Consolas, monospace;
+  background: #eef2ff;
+  color: #2563eb;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: monospace;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-/* the "More info" link becomes a small pill button */
 .more-link {
-  display: inline-block;
-  padding: 0.35rem 0.9rem;
-  border: 1px solid var(--sky-mid);
-  color: var(--sky-mid);
+  border: 1px solid #2563eb;
+  color: #2563eb;
   border-radius: 999px;
+  padding: 5px 14px;
   font-size: 0.85rem;
   font-weight: 600;
-  transition: all 0.15s ease;
 }
 .more-link:hover {
-  background-color: var(--sky-mid);
+  background: #2563eb;
   color: #fff !important;
 }
 
 
-/* ============================================================
-   CATEGORY BADGES
-   A tiny coloured pill that labels each aircraft by its type.
-   I give each category a different colour so the home page
-   catalog feels less flat.
-   ============================================================ */
+/* category pills - TODO: maybe add small icons later */
 .cat-badge {
   display: inline-block;
-  padding: 0.3rem 0.7rem;
+  padding: 4px 10px;
   font-size: 0.78rem;
   font-weight: 600;
   border-radius: 999px;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
 }
+.cat-short    { background: #dbeafe; color: #1e40af; }
+.cat-mid      { background: #ccfbf1; color: #0f766e; }
+.cat-regional { background: #dcfce7; color: #166534; }
+.cat-long     { background: #ede9fe; color: #6d28d9; }
+.cat-freight  { background: #ffedd5; color: #9a3412; }
 
-.cat-short    { background-color: rgba(45, 108, 223, 0.12);  color: #1e4fa8; }
-.cat-mid      { background-color: rgba(14, 165, 165, 0.14);  color: #0a6a6a; }
-.cat-regional { background-color: rgba(58, 197, 105, 0.16);  color: #1e8a47; }
-.cat-long     { background-color: rgba(124, 58, 237, 0.14);  color: #5a28c4; }
-.cat-freight  { background-color: rgba(244, 162, 97, 0.22);  color: #b5671f; }
 
-
-/* ============================================================
-   DETAIL PAGE
-   ============================================================ */
-/* hero card on each detail page - image on one side, intro on
-   the other, all wrapped in a white rounded card. */
+/* detail page top card */
 .detail-card {
-  background-color: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
-  margin-bottom: 2rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
 }
-
 .detail-card img {
-  border-radius: 0.75rem;
-  /* same gradient fallback while Azure URLs aren't live */
-  background: linear-gradient(135deg, var(--sky-mid), var(--grape));
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  border-radius: 8px;
   width: 100%;
+  background: #0d2b4d;
 }
 
 .product-number {
   display: inline-block;
-  font-family: "SF Mono", "Monaco", Menlo, Consolas, monospace;
+  font-family: monospace;
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--sky-mid);
-  background-color: rgba(45, 108, 223, 0.10);
-  padding: 0.3rem 0.7rem;
-  border-radius: 0.4rem;
-  margin-bottom: 0.75rem;
+  color: #2563eb;
+  background: #eef2ff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-/* ----- spec table ----- */
+
+/* spec table */
 .spec-wrap {
-  background-color: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
 }
-
-.spec-table {
-  margin-bottom: 0;
-}
-
 .spec-table th {
-  width: 42%;
+  width: 40%;
   font-weight: 500;
-  color: var(--muted);
-  background-color: #fafbfd;
-  padding: 0.8rem 1.1rem;
-  border-color: var(--line);
+  color: #6b7280;
+  background: #f9fafb;
+  padding: 12px 16px;
 }
-
 .spec-table td {
-  color: var(--ink);
-  padding: 0.8rem 1.1rem;
-  border-color: var(--line);
+  padding: 12px 16px;
   font-weight: 500;
 }
 
-/* stripe every other row in a very subtle way */
-.spec-table tbody tr:nth-child(even) th,
-.spec-table tbody tr:nth-child(even) td {
-  background-color: #fafbfd;
-}
-
-/* "Back to Catalog" link looks like a proper pill button */
+/* tried using flexbox for the back link wrapper but it broke
+   the spacing on small screens, leaving it as inline-block */
 .back-link {
   display: inline-block;
-  padding: 0.55rem 1.1rem;
-  border: 1px solid var(--sky-mid);
-  color: var(--sky-mid);
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 8px 16px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.15s ease;
 }
 .back-link:hover {
-  background-color: var(--sky-mid);
+  background: #2563eb;
   color: #fff !important;
 }
 
 
-/* ============================================================
-   FAQ accordion - a little more colourful than default bootstrap
-   ============================================================ */
-.accordion-item {
-  border: 1px solid var(--line);
-  border-radius: 0.75rem !important;
-  margin-bottom: 0.75rem;
-  overflow: hidden;
+/* simple page header used on about / faqs pages */
+.page-hero {
+  background: #0d2b4d;
+  color: #fff;
+  padding: 40px 0;
+  margin-bottom: 24px;
+  border-radius: 0 0 12px 12px;
 }
-.accordion-button {
-  font-weight: 600;
-  color: var(--sky-deep);
-  padding: 1rem 1.25rem;
+.page-hero h1 {
+  color: #fff;
+  margin-bottom: 6px;
 }
-.accordion-button:not(.collapsed) {
-  background-color: rgba(45, 108, 223, 0.08);
-  color: var(--sky-mid);
-  box-shadow: none;
-}
-.accordion-button:focus {
-  box-shadow: 0 0 0 0.2rem rgba(45, 108, 223, 0.15);
+.page-hero p {
+  color: #cbd5e1;
+  margin-bottom: 0;
 }
 
 
-/* ============================================================
-   FOOTER
-   white box, colourful top stripe so it mirrors the navbar.
-   ============================================================ */
+/* footer */
 .site-footer {
-  background-color: var(--card);
-  color: var(--muted);
-  padding: 1.75rem 0;
+  background: #fff;
+  color: #6b7280;
+  padding: 24px 0;
   font-size: 0.9rem;
   text-align: center;
-  position: relative;
-  margin-top: 2rem;
-  border-top: 1px solid var(--line);
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-      var(--coral) 0%,
-      var(--sky-light) 50%,
-      var(--sky-mid) 100%);
-}
-
-.site-footer .brand-icon {
-  color: var(--coral);
-  margin-right: 0.25rem;
+  border-top: 1px solid #e5e7eb;
 }
 
 
-/* ============================================================
-   Small screen tweaks
-   Bootstrap does most of this already, just cleaning up the
-   carousel a bit on narrow viewports.
-   ============================================================ */
-@media (max-width: 576px) {
-  .hero-carousel .carousel-item img { height: 46vh; }
-  .hero-carousel .carousel-caption {
-    padding: 1rem 1.25rem 1.5rem;
-  }
-  .hero-carousel .carousel-caption h5 { font-size: 1.2rem; }
-  .page-hero { padding: 2.25rem 0 2.5rem; border-radius: 0 0 1rem 1rem; }
+/* mobile fixes */
+@media (max-width: 768px) {
+  .hero-title { font-size: 1.8rem; }
+  .home-hero { min-height: 55vh; }
+  .home-hero .hero-text-wrap { padding: 60px 0 90px; }
+  .home-main { margin-top: -50px; }
+  .hero-carousel .carousel-item img { height: 320px; }
 
-  /* home hero: shrink padding and pull the card up less aggressively */
-  .home-hero { min-height: 60vh; }
-  .home-hero .hero-text-wrap { padding: 4rem 0 6rem; }
-  .home-main { margin-top: -3.5rem; }
-  .top-banner { font-size: 0.85rem; }
-}
-
-/* on tablets, also tone down the hero a bit */
-@media (max-width: 992px) {
-  .home-hero .hero-text-wrap { padding: 5rem 0 7rem; }
-
-  /* when the navbar collapses, the dropdown menu inside the
-     transparent home-navbar gets a dark backdrop so it's readable */
+  /* dark backdrop for the dropped-down menu on the home page */
   .home-navbar .navbar-collapse {
-    background-color: rgba(10, 37, 64, 0.92);
-    border-radius: 0.75rem;
-    margin-top: 0.5rem;
-    padding: 0.75rem;
+    background: rgba(13, 43, 77, 0.95);
+    padding: 12px;
+    border-radius: 8px;
   }
 }
