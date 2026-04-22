@@ -1,151 +1,699 @@
 /* ============================================================
    styles.css
    Custom styles for the Aircraft Catalog website.
-   We use Bootstrap 5 for most of the heavy lifting (grid,
-   navbar, carousel, table, etc). This file just tweaks a few
-   things so the site looks a bit more modern and minimal.
+   Bootstrap 5 gives us the grid + components, this sheet does
+   all the colour / branding work on top of it.
    ============================================================ */
 
 
-/* -------- body / base --------
-   keeping the background a soft off-white so it doesn't feel
-   like a plain white page. also picking a nice system font
-   stack (so we don't have to load a web font). */
+/* ----- our little colour palette -----
+   I pulled these together so the whole site can reuse them
+   through CSS variables. Makes it easy to swap later. */
+:root {
+  --sky-deep:    #0a2540;   /* dark navy - used for headings */
+  --sky-mid:     #2d6cdf;   /* main brand blue */
+  --sky-light:   #48cae4;   /* lighter accent blue */
+  --coral:       #ff6b35;   /* warm accent for call-outs */
+  --mint:        #3ac569;   /* used for regional category */
+  --grape:       #7c3aed;   /* used for long-haul category */
+  --sand:        #f4a261;   /* used for freighter category */
+  --teal:        #0ea5a5;   /* used for mid-range category */
+  --paper:       #f5f7fb;   /* page background */
+  --ink:         #0f172a;   /* body text */
+  --muted:       #64748b;   /* secondary text */
+  --card:        #ffffff;
+  --line:        #e2e8f0;
+}
+
+
+/* -------- base page --------
+   soft blue-ish background so the white cards pop a bit */
 body {
-  background-color: #f8f9fa;
-  color: #212529;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* a little more breathing room between the navbar and content */
+h1, h2, h3, h4, h5 {
+  color: var(--sky-deep);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* breathing room between navbar and page content */
 main {
-  padding-top: 1.5rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* links use our brand blue and turn coral on hover */
+a {
+  color: var(--sky-mid);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: var(--coral);
 }
 
 
-/* -------- navbar -------- */
-/* light navbar with a thin bottom border instead of a shadow.
-   feels cleaner / less heavy. */
+/* ============================================================
+   NAVBAR
+   White bar with a thin coloured stripe underneath, so it still
+   feels clean but has a pop of colour.
+   ============================================================ */
 .site-navbar {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e9ecef;
+  background-color: var(--card);
+  border-bottom: 1px solid var(--line);
+  /* the coloured stripe is drawn as a thin gradient line */
+  box-shadow: inset 0 -3px 0 0 transparent;
+  position: relative;
+}
+
+/* the coloured gradient stripe under the navbar */
+.site-navbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background: linear-gradient(90deg,
+      var(--sky-mid) 0%,
+      var(--sky-light) 35%,
+      var(--coral) 100%);
 }
 
 .site-navbar .navbar-brand {
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  font-weight: 700;
+  color: var(--sky-deep);
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
 }
 
-/* small plane icon next to the brand name */
 .site-navbar .brand-icon {
-  margin-right: 0.35rem;
+  color: var(--coral);
+  margin-right: 0.4rem;
+  font-size: 1.1rem;
+}
+
+/* nav links - subtle pill hover */
+.site-navbar .nav-link {
+  color: var(--ink);
+  font-weight: 500;
+  padding: 0.45rem 0.9rem !important;
+  border-radius: 999px;
+  margin: 0 0.15rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.site-navbar .nav-link:hover {
+  background-color: rgba(45, 108, 223, 0.08);
+  color: var(--sky-mid);
+}
+.site-navbar .nav-link.active {
+  background-color: var(--sky-mid);
+  color: #fff !important;
+}
+
+/* dropdown menu tweaks */
+.site-navbar .dropdown-menu {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  padding: 0.5rem;
+}
+.site-navbar .dropdown-item {
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.75rem;
+}
+.site-navbar .dropdown-item:hover {
+  background-color: rgba(45, 108, 223, 0.08);
+  color: var(--sky-mid);
 }
 
 
-/* -------- hero carousel on the home page -------- */
-.hero-carousel {
-  border-radius: 12px;
-  overflow: hidden; /* so the rounded corners actually clip the image */
+/* ============================================================
+   TOP YELLOW ANNOUNCEMENT BAR (home page only)
+   Sits above everything, even the navbar. Looks like the
+   notice strip you see on a lot of airline sites.
+   ============================================================ */
+.top-banner {
+  background-color: #ffd24a;
+  color: var(--ink);
+  font-size: 0.92rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.top-banner .banner-msg {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.top-banner .banner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.15);
+  color: #fff;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: "Times New Roman", serif;
+}
+.top-banner .banner-link {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.top-banner .banner-link:hover {
+  color: var(--sky-deep);
+}
+
+
+/* ============================================================
+   HOME HERO REGION
+   Big background image, transparent navbar layered on top, and
+   a headline with a CTA button on the left side.
+   ============================================================ */
+.home-hero {
+  position: relative;
+  min-height: 78vh;
+  background: linear-gradient(135deg, var(--sky-deep) 0%, var(--sky-mid) 60%, var(--sky-light) 100%);
+  overflow: hidden;
+  color: #fff;
+}
+
+.home-hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* darken the photo a bit so the white text stays legible */
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(10, 37, 64, 0.55) 0%,
+      rgba(10, 37, 64, 0.20) 60%,
+      rgba(10, 37, 64, 0.00) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-hero header,
+.home-hero .hero-text-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.home-hero .hero-text-wrap {
+  padding: 7rem 0 9rem;
+}
+
+.hero-title {
+  color: #fff;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   margin-bottom: 2rem;
+  max-width: 620px;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.25);
 }
 
-/* keep slides a consistent height so the carousel doesn't jump
-   around when you move between slides. */
+.hero-btn {
+  display: inline-block;
+  background-color: #fff;
+  color: var(--sky-deep) !important;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hero-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+  color: var(--sky-mid) !important;
+}
+
+
+/* --- transparent navbar variant used inside .home-hero --- */
+.home-navbar {
+  background-color: transparent !important;
+  border-bottom: none;
+}
+.home-navbar::after { display: none; }   /* hide the gradient stripe on the home hero */
+
+.home-navbar .navbar-brand,
+.home-navbar .nav-link {
+  color: #fff;
+}
+.home-navbar .navbar-brand .brand-icon { color: #fff; }
+
+.home-navbar .nav-link {
+  color: rgba(255,255,255,0.92);
+}
+.home-navbar .nav-link:hover {
+  background-color: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.home-navbar .nav-link.active {
+  background-color: rgba(255,255,255,0.18);
+  color: #fff !important;
+}
+
+.home-navbar .navbar-toggler {
+  border-color: rgba(255,255,255,0.5);
+}
+.home-navbar .navbar-toggler-icon {
+  filter: invert(1) brightness(2);
+}
+
+/* small "Sign in" pill on the far right of the home navbar */
+.sign-in-pill {
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 999px;
+  padding: 0.4rem 1rem !important;
+}
+.home-navbar .sign-in-pill:hover {
+  background-color: #fff;
+  color: var(--sky-deep) !important;
+}
+
+
+/* ============================================================
+   FLOATING CARD on the home page - the white box that holds the
+   carousel and overlaps the bottom of the hero image. Mirrors the
+   "booking widget" you see on a lot of airline home pages.
+   ============================================================ */
+.home-main {
+  /* pull the first child up so it overlaps the hero image */
+  margin-top: -6rem;
+  position: relative;
+  z-index: 3;
+}
+
+.floating-card {
+  background-color: var(--card);
+  border-radius: 1rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+/* the carousel sits inside the floating card so trim its own
+   margin / shadow to avoid double-bordering */
+.floating-card .hero-carousel {
+  margin-bottom: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+/* ============================================================
+   HERO BANNER (used as a simple page title banner on
+   FAQs / About / detail pages)
+   ============================================================ */
+.page-hero {
+  background: linear-gradient(135deg,
+      var(--sky-deep) 0%,
+      var(--sky-mid) 60%,
+      var(--sky-light) 100%);
+  color: #fff;
+  padding: 3rem 0 3.25rem;
+  margin-bottom: 2rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  /* a little textured pattern via radial gradients - looks like
+     a faint star field / contrails */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.10) 0, transparent 45%),
+    linear-gradient(135deg, var(--sky-deep) 0%, var(--sky-mid) 60%, var(--sky-light) 100%);
+}
+
+.page-hero h1 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.page-hero p {
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0;
+  max-width: 680px;
+}
+
+
+/* ============================================================
+   CAROUSEL
+   ============================================================ */
+.hero-carousel {
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* keep each slide the same height so the layout doesn't jump */
 .hero-carousel .carousel-item img {
   width: 100%;
-  height: 60vh;
+  height: 62vh;
   object-fit: cover;
+  /* while the Azure URL isn't set yet, show a coloured gradient
+     placeholder behind the broken image so the slide still looks
+     intentional. */
+  background: linear-gradient(135deg, var(--sky-mid), var(--grape));
 }
 
-/* a darker gradient behind the caption so the text is readable
-   even if the image is light in that area. */
+/* caption sits bottom-left on top of a soft dark gradient */
 .hero-carousel .carousel-caption {
-  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+  background: linear-gradient(to top,
+      rgba(10, 37, 64, 0.75) 0%,
+      rgba(10, 37, 64, 0.30) 60%,
+      transparent 100%);
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 1.25rem 2rem 2rem;
+  padding: 1.5rem 2rem 2.25rem;
   text-align: left;
 }
-
 .hero-carousel .carousel-caption h5 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
-
 .hero-carousel .carousel-caption p {
+  color: rgba(255,255,255,0.92);
   margin-bottom: 0;
-  opacity: 0.9;
+  font-size: 1rem;
 }
 
-
-/* -------- catalog table on the home page -------- */
-.catalog-table {
-  background-color: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-}
-
-.catalog-table th {
-  background-color: #f1f3f5;
-  border-bottom: 1px solid #e9ecef;
+/* little "Explore →" tag on each slide */
+.slide-cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  background-color: var(--coral);
+  color: #fff !important;
+  border-radius: 999px;
+  font-size: 0.85rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-carousel .carousel-indicators [data-bs-target] {
+  background-color: rgba(255,255,255,0.65);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+}
+.hero-carousel .carousel-indicators .active {
+  background-color: var(--coral);
+}
+
+
+/* ============================================================
+   CATALOG TABLE (home page)
+   ============================================================ */
+.catalog-section {
+  background-color: var(--card);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  border: 1px solid var(--line);
+}
+
+.catalog-table {
+  margin-bottom: 0;
+}
+
+.catalog-table thead th {
+  background-color: transparent;
+  border-bottom: 2px solid var(--line);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
+  padding: 0.75rem 0.9rem;
 }
 
-.catalog-table td,
-.catalog-table th {
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
+.catalog-table tbody td {
+  padding: 1rem 0.9rem;
   vertical-align: middle;
+  border-color: var(--line);
+}
+
+.catalog-table tbody tr {
+  transition: background-color 0.12s ease;
+}
+.catalog-table tbody tr:hover {
+  background-color: rgba(45, 108, 223, 0.04);
+}
+
+/* the product number (SH-100 etc) gets a monospace / tag look */
+.product-code {
+  display: inline-block;
+  background-color: rgba(45, 108, 223, 0.08);
+  color: var(--sky-mid);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  font-family: "SF Mono", "Monaco", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* the "More info" link becomes a small pill button */
+.more-link {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--sky-mid);
+  color: var(--sky-mid);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.more-link:hover {
+  background-color: var(--sky-mid);
+  color: #fff !important;
 }
 
 
-/* -------- detail page specs --------
-   this is the big specification table on every aircraft page */
+/* ============================================================
+   CATEGORY BADGES
+   A tiny coloured pill that labels each aircraft by its type.
+   I give each category a different colour so the home page
+   catalog feels less flat.
+   ============================================================ */
+.cat-badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.cat-short    { background-color: rgba(45, 108, 223, 0.12);  color: #1e4fa8; }
+.cat-mid      { background-color: rgba(14, 165, 165, 0.14);  color: #0a6a6a; }
+.cat-regional { background-color: rgba(58, 197, 105, 0.16);  color: #1e8a47; }
+.cat-long     { background-color: rgba(124, 58, 237, 0.14);  color: #5a28c4; }
+.cat-freight  { background-color: rgba(244, 162, 97, 0.22);  color: #b5671f; }
+
+
+/* ============================================================
+   DETAIL PAGE
+   ============================================================ */
+/* hero card on each detail page - image on one side, intro on
+   the other, all wrapped in a white rounded card. */
+.detail-card {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  margin-bottom: 2rem;
+}
+
+.detail-card img {
+  border-radius: 0.75rem;
+  /* same gradient fallback while Azure URLs aren't live */
+  background: linear-gradient(135deg, var(--sky-mid), var(--grape));
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+.product-number {
+  display: inline-block;
+  font-family: "SF Mono", "Monaco", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sky-mid);
+  background-color: rgba(45, 108, 223, 0.10);
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ----- spec table ----- */
+.spec-wrap {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.spec-table {
+  margin-bottom: 0;
+}
+
 .spec-table th {
-  width: 40%;
+  width: 42%;
   font-weight: 500;
-  color: #495057;
+  color: var(--muted);
+  background-color: #fafbfd;
+  padding: 0.8rem 1.1rem;
+  border-color: var(--line);
 }
 
 .spec-table td {
-  color: #212529;
+  color: var(--ink);
+  padding: 0.8rem 1.1rem;
+  border-color: var(--line);
+  font-weight: 500;
 }
 
-/* the product number label under the aircraft name */
-.product-number {
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  color: #6c757d;
+/* stripe every other row in a very subtle way */
+.spec-table tbody tr:nth-child(even) th,
+.spec-table tbody tr:nth-child(even) td {
+  background-color: #fafbfd;
+}
+
+/* "Back to Catalog" link looks like a proper pill button */
+.back-link {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--sky-mid);
+  color: var(--sky-mid);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.15s ease;
+}
+.back-link:hover {
+  background-color: var(--sky-mid);
+  color: #fff !important;
 }
 
 
-/* -------- footer -------- */
+/* ============================================================
+   FAQ accordion - a little more colourful than default bootstrap
+   ============================================================ */
+.accordion-item {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem !important;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.accordion-button {
+  font-weight: 600;
+  color: var(--sky-deep);
+  padding: 1rem 1.25rem;
+}
+.accordion-button:not(.collapsed) {
+  background-color: rgba(45, 108, 223, 0.08);
+  color: var(--sky-mid);
+  box-shadow: none;
+}
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(45, 108, 223, 0.15);
+}
+
+
+/* ============================================================
+   FOOTER
+   white box, colourful top stripe so it mirrors the navbar.
+   ============================================================ */
 .site-footer {
-  background-color: #ffffff;
-  border-top: 1px solid #e9ecef;
-  padding: 1.25rem 0;
-  color: #6c757d;
+  background-color: var(--card);
+  color: var(--muted);
+  padding: 1.75rem 0;
   font-size: 0.9rem;
   text-align: center;
+  position: relative;
+  margin-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+      var(--coral) 0%,
+      var(--sky-light) 50%,
+      var(--sky-mid) 100%);
+}
+
+.site-footer .brand-icon {
+  color: var(--coral);
+  margin-right: 0.25rem;
 }
 
 
-/* -------- small screen tweaks --------
-   bootstrap already handles most of the responsive stuff,
-   just shrinking the carousel a little on phones. */
+/* ============================================================
+   Small screen tweaks
+   Bootstrap does most of this already, just cleaning up the
+   carousel a bit on narrow viewports.
+   ============================================================ */
 @media (max-width: 576px) {
-  .hero-carousel .carousel-item img {
-    height: 45vh;
+  .hero-carousel .carousel-item img { height: 46vh; }
+  .hero-carousel .carousel-caption {
+    padding: 1rem 1.25rem 1.5rem;
   }
-  .hero-carousel .carousel-caption h5 {
-    font-size: 1.15rem;
+  .hero-carousel .carousel-caption h5 { font-size: 1.2rem; }
+  .page-hero { padding: 2.25rem 0 2.5rem; border-radius: 0 0 1rem 1rem; }
+
+  /* home hero: shrink padding and pull the card up less aggressively */
+  .home-hero { min-height: 60vh; }
+  .home-hero .hero-text-wrap { padding: 4rem 0 6rem; }
+  .home-main { margin-top: -3.5rem; }
+  .top-banner { font-size: 0.85rem; }
+}
+
+/* on tablets, also tone down the hero a bit */
+@media (max-width: 992px) {
+  .home-hero .hero-text-wrap { padding: 5rem 0 7rem; }
+
+  /* when the navbar collapses, the dropdown menu inside the
+     transparent home-navbar gets a dark backdrop so it's readable */
+  .home-navbar .navbar-collapse {
+    background-color: rgba(10, 37, 64, 0.92);
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
   }
 }
