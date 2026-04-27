@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ASP.NETCore_Exercise10</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ASP.NETCore_Exercise10.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- navbar same as other pages except main (duplicated and revised some info)  -->
+    <header>
+        <nav class="navbar navbar-expand-lg site-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <span class="brand-icon">&#9992;</span>Skyline
+                </a>
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNav"
+                        aria-controls="mainNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft1.html">AeroLine 700</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft2.html">Albatroz 800</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft3.html">Starfleet 300</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft4.html">Accent 400</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft5.html">Falcon 500</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft6.html">Batman 600</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft7.html">Spyder 700</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft8.html">STARK 800</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft9.html">TITAN 900</a></li>
+                                <li><a class="dropdown-item" href="/Pages/Products/aircraft10.html">SkyHawk X 1000</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pages" asp-action="Faqs">FAQs</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pages" asp-action="About">About</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- simple footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <span class="brand-icon">&#9992;</span>
+            &copy; 2026 Skyline - All rights reserved.
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
