@@ -1,19 +1,23 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ASP.NETCore_Exercise10.Data;
 using ASP.NETCore_Exercise10.Models;
 
 namespace ASP.NETCore_Exercise10.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly AircraftDbContext _context;
+
+        public HomeController(AircraftDbContext context)
         {
-            return View();
+            _context = context;
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Aircraft.ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
