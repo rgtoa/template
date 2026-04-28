@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -44,16 +45,16 @@ namespace ASP.NETCore_Exercise10.Controllers
         }
 
         // GET: Aircraft/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Aircraft/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,ImageUrl,ProductNumber,Name,Model,Description,PaxMaxSeating,TypicalSeating,CargoD3capacity,MaxPalletNumber,WaterVolume,PerformanceRange,Mmo,MaxRampWeight,MaxTakeOffWeight,MaxLandingWeight,MaxFuelCapacity,OverallLength,CabinLength,FuselageWidth,MaxCabinWidth,WingSpan,Height,Track,Wheelbase")] Aircraft aircraft)
         {
             if (ModelState.IsValid)
@@ -66,6 +67,7 @@ namespace ASP.NETCore_Exercise10.Controllers
         }
 
         // GET: Aircraft/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,10 +84,9 @@ namespace ASP.NETCore_Exercise10.Controllers
         }
 
         // POST: Aircraft/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ImageUrl,ProductNumber,Name,Model,Description,PaxMaxSeating,TypicalSeating,CargoD3capacity,MaxPalletNumber,WaterVolume,PerformanceRange,Mmo,MaxRampWeight,MaxTakeOffWeight,MaxLandingWeight,MaxFuelCapacity,OverallLength,CabinLength,FuselageWidth,MaxCabinWidth,WingSpan,Height,Track,Wheelbase")] Aircraft aircraft)
         {
             if (id != aircraft.Id)
@@ -117,6 +118,7 @@ namespace ASP.NETCore_Exercise10.Controllers
         }
 
         // GET: Aircraft/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +139,7 @@ namespace ASP.NETCore_Exercise10.Controllers
         // POST: Aircraft/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var aircraft = await _context.Aircraft.FindAsync(id);

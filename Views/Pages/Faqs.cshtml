@@ -1,37 +1,31 @@
-﻿@{
-    ViewData["Title"] = "About Page";
+@{
+    ViewData["Title"] = "FAQs";
 }
 
-<!-- header portion of the faqs page with bootstrap container (makes responsive  easy) -->
 <section class="page-hero">
     <div class="container">
         <h1>Frequently Asked Questions</h1>
-        <p>
-            Some of the most common questions we get about our catalog
-            and our aircraft.
-        </p>
+        <p>Common questions about our catalog and aircraft.</p>
     </div>
 </section>
 
-<main class="container">
+<main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
 
-    <!-- bootstrap utility (accordion) which shows one question per panel
-            placed temporary lorem ipsum placeholders for now               -->
     <div class="accordion" id="faqAccordion">
 
         <div class="accordion-item">
             <h2 class="accordion-header">
                 <button class="accordion-button" type="button"
                         data-bs-toggle="collapse" data-bs-target="#faq1">
-                    Lorem ipsum dolor sit amet?
+                    What is the Skyline Aircraft Catalog?
                 </button>
             </h2>
             <div id="faq1" class="accordion-collapse collapse show"
                  data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                    Skyline is a fictional aircraft specification catalog built for educational purposes.
+                    It allows users to browse a full fleet of aircraft with detailed technical specs,
+                    including seating capacity, range, weights, and dimensions.
                 </div>
             </div>
         </div>
@@ -40,15 +34,14 @@
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button"
                         data-bs-toggle="collapse" data-bs-target="#faq2">
-                    Ut enim ad minim veniam?
+                    Are the aircraft and specifications real?
                 </button>
             </h2>
             <div id="faq2" class="accordion-collapse collapse"
                  data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                    sint occaecat cupidatat non proident.
+                    No. All aircraft models, names, images, and specifications shown in this catalog
+                    are entirely fictional and created for educational and demonstration purposes only.
                 </div>
             </div>
         </div>
@@ -57,15 +50,14 @@
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button"
                         data-bs-toggle="collapse" data-bs-target="#faq3">
-                    Quis nostrud exercitation ullamco?
+                    Do I need an account to browse the catalog?
                 </button>
             </h2>
             <div id="faq3" class="accordion-collapse collapse"
                  data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Sunt in culpa qui officia deserunt mollit anim id est
-                    laborum. Sed ut perspiciatis unde omnis iste natus error
-                    sit voluptatem accusantium doloremque laudantium.
+                    No. Anyone can browse the catalog and view aircraft details without logging in.
+                    An account is only required to add, edit, or delete aircraft records.
                 </div>
             </div>
         </div>
@@ -74,15 +66,15 @@
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button"
                         data-bs-toggle="collapse" data-bs-target="#faq4">
-                    Totam rem aperiam eaque ipsa?
+                    How do I add or edit aircraft in the catalog?
                 </button>
             </h2>
             <div id="faq4" class="accordion-collapse collapse"
                  data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                    aut odit aut fugit, sed quia consequuntur magni dolores
-                    eos qui ratione voluptatem sequi nesciunt.
+                    Register for an account and log in. Once authenticated, you will see Edit, Delete,
+                    and Add New Aircraft buttons throughout the catalog. All users are treated as
+                    administrators with full access to manage records.
                 </div>
             </div>
         </div>
@@ -91,17 +83,18 @@
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button"
                         data-bs-toggle="collapse" data-bs-target="#faq5">
-                    Neque porro quisquam est?
+                    What technology powers this site?
                 </button>
             </h2>
             <div id="faq5" class="accordion-collapse collapse"
                  data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                    Qui dolorem ipsum quia dolor sit amet, consectetur,
-                    adipisci velit, sed quia non numquam eius modi tempora
-                    incidunt ut labore et dolore magnam aliquam quaerat.
+                    This site is built with ASP.NET Core MVC (.NET 10), Entity Framework Core connected
+                    to an Azure SQL database, ASP.NET Core Identity for authentication, and Bootstrap 5
+                    for the responsive layout. Images are hosted on Azure Blob Storage.
                 </div>
             </div>
         </div>
+
     </div>
 </main>

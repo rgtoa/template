@@ -1,173 +1,99 @@
-﻿@model IEnumerable<ASP.NETCore_Exercise10.Models.Aircraft>
-
+@model IEnumerable<ASP.NETCore_Exercise10.Models.Aircraft>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Catalog";
 }
 
-<h1>Index</h1>
+<section class="page-hero">
+    <div class="container">
+        <h1>Aircraft Catalog</h1>
+        <p>Browse our full fleet. Click any aircraft for the complete spec sheet.</p>
+    </div>
+</section>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaxMaxSeating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypicalSeating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CargoD3capacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxPalletNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WaterVolume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PerformanceRange)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mmo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxRampWeight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxTakeOffWeight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxLandingWeight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxFuelCapacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OverallLength)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CabinLength)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FuselageWidth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxCabinWidth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WingSpan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Track)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Wheelbase)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaxMaxSeating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypicalSeating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CargoD3capacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxPalletNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WaterVolume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformanceRange)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mmo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxRampWeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxTakeOffWeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxLandingWeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxFuelCapacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OverallLength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CabinLength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FuselageWidth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxCabinWidth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WingSpan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Track)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wheelbase)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<main class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
+
+    @if (User.Identity!.IsAuthenticated)
+    {
+        <div class="mb-3">
+            <a asp-action="Create" class="hero-btn" style="font-size:0.9rem; padding:0.6rem 1.4rem;">+ Add New Aircraft</a>
+        </div>
+    }
+
+    <section class="catalog-section">
+        <div class="table-responsive">
+            <table class="table align-middle catalog-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product #</th>
+                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Description</th>
+                        <th>Pax Max</th>
+                        <th>Typical Seating</th>
+                        <th>Cargo D3</th>
+                        <th>Max Pallets</th>
+                        <th>Water Vol.</th>
+                        <th>Range</th>
+                        <th>MMO</th>
+                        <th>Max Ramp Wt.</th>
+                        <th>Max T/O Wt.</th>
+                        <th>Max Land. Wt.</th>
+                        <th>Max Fuel</th>
+                        <th>Overall Len.</th>
+                        <th>Cabin Len.</th>
+                        <th>Fuselage W.</th>
+                        <th>Max Cabin W.</th>
+                        <th>Wingspan</th>
+                        <th>Height</th>
+                        <th>Track</th>
+                        <th>Wheelbase</th>
+                        <th class="text-end">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.ImageUrl" alt="@item.Name"
+                                     style="width:80px; height:55px; object-fit:cover; border-radius:0.4rem;" />
+                            </td>
+                            <td><span class="product-code">@item.ProductNumber</span></td>
+                            <td><strong>@item.Name</strong></td>
+                            <td>@item.Model</td>
+                            <td style="max-width:160px; white-space:normal; font-size:0.85rem;">@item.Description</td>
+                            <td>@item.PaxMaxSeating</td>
+                            <td>@item.TypicalSeating</td>
+                            <td>@item.CargoD3capacity</td>
+                            <td>@item.MaxPalletNumber</td>
+                            <td>@item.WaterVolume</td>
+                            <td>@item.PerformanceRange</td>
+                            <td>@item.Mmo</td>
+                            <td>@item.MaxRampWeight</td>
+                            <td>@item.MaxTakeOffWeight</td>
+                            <td>@item.MaxLandingWeight</td>
+                            <td>@item.MaxFuelCapacity</td>
+                            <td>@item.OverallLength</td>
+                            <td>@item.CabinLength</td>
+                            <td>@item.FuselageWidth</td>
+                            <td>@item.MaxCabinWidth</td>
+                            <td>@item.WingSpan</td>
+                            <td>@item.Height</td>
+                            <td>@item.Track</td>
+                            <td>@item.Wheelbase</td>
+                            <td class="text-end" style="white-space:nowrap;">
+                                <a class="more-link" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                @if (User.Identity!.IsAuthenticated)
+                                {
+                                    <a class="more-link ms-1" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <a class="more-link ms-1" asp-action="Delete" asp-route-id="@item.Id" style="border-color:#e53e3e; color:#e53e3e;">Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
